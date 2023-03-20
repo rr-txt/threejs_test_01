@@ -8,8 +8,7 @@
         margin: 0;
       }
     </style>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r122/build/three.min.js"></script>
-    <script src="https://cdn.rawgit.com/mrdoob/three.js/r122/examples/js/loaders/GLTFLoader.js"></script>
+    <script src=<script src="https://threejs.org/build/three.min.js"></script>
   </head>
   <body>
     <script>
@@ -40,7 +39,7 @@
 
       // Load the GLTF model
       var loader = new THREE.GLTFLoader();
-      loader.load('C:\__Projects\RADICI\camry_3js\camry_3js.glb', function (gltf) {
+      loader.load('https://rr-txt.github.io/threejs_test_01/camry_3js.glb', function (gltf) {
         // Add the model to the scene
         scene.add(gltf.scene);
       });
