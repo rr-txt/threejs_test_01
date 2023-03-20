@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My Three.js Scene</title>
+    <style>
+      body {
+        margin: 0;
+      }
+    </style>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r122/build/three.min.js"></script>
+    <script src="https://cdn.rawgit.com/mrdoob/three.js/r122/examples/js/loaders/GLTFLoader.js"></script>
+  </head>
+  <body>
+    <script>
+
+      // Create the scene and set its background to a gradient skybox
+      var scene = new THREE.Scene();
+      var skyboxGeometry = new THREE.BoxGeometry(5000, 5000, 5000);
+      var skyboxMaterials = [
+        new THREE.MeshBasicMaterial({ color: 0x6699FF, side: THREE.BackSide }),
+        new THREE.MeshBasicMaterial({ color: 0xFFFFFF, side: THREE.BackSide })
+      ];
+      var skybox = new THREE.Mesh(skyboxGeometry, skyboxMaterials);
+      scene.add(skybox);
+
+      // Create the camera and set its position
+      var camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+      camera.position.z = 5;
+
+      // Create a directional light and add it to the scene
+      var directionalLight = new THREE.DirectionalLight(0xffffff, 1);
+      directionalLight.position.set(-1, 2, 4);
+      scene.add(directionalLight);
+
+      // Create the renderer and add it to the DOM
+      var renderer = new THREE.WebGLRenderer();
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      document.body.appendChild(renderer.domElement);
+
+      // Load the GLTF model
+      var loader = new THREE.GLTFLoader();
+      loader.load('C:\__Projects\RADICI\camry_3js\camry_3js.glb', function (gltf) {
+        // Add the model to the scene
+        scene.add(gltf.scene);
+      });
+
+      // Render the scene
+      function animate() {
+        requestAnimationFrame(animate);
+        renderer.render(scene, camera);
+      }
+      animate();
+
+    </script>
+  </body>
+</html>
